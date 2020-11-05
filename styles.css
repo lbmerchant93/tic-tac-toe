@@ -1,0 +1,23 @@
+html,
+body{
+  min-height: 100vh;
+  margin: 0;
+}
+
+.main-layout-container{
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+/* side displays */
+.player-one-left-side,
+.player-two-right-side{
+  background:linear-gradient(#00d4ff, #095e79, #020024);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* game display */
+.game-display-area{
+  background: #FFFFFF
+}
