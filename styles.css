@@ -1,23 +1,82 @@
 html,
-body{
+body {
   min-height: 100vh;
   margin: 0;
 }
 
-.main-layout-container{
+.main-layout-container {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
 }
 
 /* side displays */
 .player-one-left-side,
-.player-two-right-side{
-  background:linear-gradient(#00d4ff, #095e79, #020024);
+.player-two-right-side {
+  background: linear-gradient(#00d4ff, #095e79, #020024);
   background-repeat: no-repeat;
   background-attachment: fixed;
+  text-align: center;
+  font-size: 2em;
+  padding-top: 2em;
+  display: grid;
+  grid-template-rows: 0.1fr 0.1fr 1fr;
+}
+
+.player-one-trophies,
+.player-two-trophies {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.25em;
+  justify-content: center;
+  padding: 0.25em;
 }
 
 /* game display */
-.game-display-area{
-  background: #FFFFFF
+.game-display-area {
+  background: #FFFFFF;
+  display: grid;
+  grid-template-rows: 0.1fr 1fr;
+  text-align: center;
+  font-size: 2em;
+  padding-top: 2em;
 }
+
+.game-board {
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  padding: 2em;
+}
+
+.one,
+.two,
+.three,
+.four,
+.five,
+.six {
+  border-bottom: 0.2em solid black;
+}
+
+.two,
+.three,
+.five,
+.six,
+.eight,
+.nine {
+  border-left: 0.2em solid black;
+}
+
+.one,
+.two,
+.three,
+.four,
+.five,
+.six,
+.seven,
+.eight,
+.nine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*
