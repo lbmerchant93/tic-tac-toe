@@ -79,4 +79,7 @@ body {
   align-items: center;
 }
 
+.disable {
+  pointer-events: none;
+}
 /*

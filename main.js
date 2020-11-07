@@ -25,10 +25,11 @@ boxEight.addEventListener('click', displayPlayerInput);
 boxNine.addEventListener('click', displayPlayerInput);
 
 // functions and event handlers
-function displayPlayerInput(event, player) {
+function displayPlayerInput(event) {
   for(var i = 0; i < boxes.length; i++) {
     if(event.target.id === boxes[i].id) {
       boxes[i].innerText = `${game.currentPlayer.token}`;
+      boxes[i].classList.add('disable');
     };
   };
     game.decidePlayerTurn();
