@@ -1,4 +1,5 @@
 //querySelectors
+var messageDisplay = document.querySelector('.display-turn');
 var boxOne = document.querySelector('.one');
 var boxTwo = document.querySelector('.two');
 var boxThree = document.querySelector('.three');
@@ -26,25 +27,21 @@ boxNine.addEventListener('click', displayPlayerInput);
 
 // functions and event handlers
 function displayPlayerInput(event) {
-  for(var i = 0; i < boxes.length; i++) {
-    if(event.target.id === boxes[i].id) {
+  for (var i = 0; i < boxes.length; i++) {
+    if (event.target.id === boxes[i].id) {
       boxes[i].innerText = `${game.currentPlayer.token}`;
       boxes[i].classList.add('disable');
+      boxes.splice(i, 1);
     };
   };
-    game.decidePlayerTurn();
+  game.decidePlayerTurn();
+  messageDisplay.innerText = `It's ${game.currentPlayer.token}'s turn`;
+  if (game.boxesFilled >= 5 && game.boxesFilled <= 8) {
+    game.checkForWinner();
+  } else if (game.boxesFilled === 9){
+    game.checkForDraw();
+  }
 };
-
-
-
-
-
-
-
-
-
-
-
 
 
 
