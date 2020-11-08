@@ -86,6 +86,7 @@ function checkWinningConditions() {
 function declareWinner() {
   if (messageDisplay.innerText.includes('won!')) {
     currentGame.changeWinCount();
+    currentGame.waitingPlayer.saveWinsToStorage();
     currentGame.resetGame();
   };
 };
@@ -118,4 +119,5 @@ function displayWinCounts() {
   playerOneWins.innerText = `${currentGame.player1.winCount} wins`;
   playerTwoWins.innerText = `${currentGame.player2.winCount} wins`;
 };
+
 //
