@@ -17,6 +17,7 @@ var currentGame = new Game();
 var boxes = [boxOne, boxTwo, boxThree, boxFour, boxFive, boxSix, boxSeven, boxEight, boxNine];
 
 //eventListeners
+window.addEventListener('load', getStoredWins);
 boxOne.addEventListener('click', runGame);
 boxTwo.addEventListener('click', runGame);
 boxThree.addEventListener('click', runGame);
@@ -120,4 +121,10 @@ function displayWinCounts() {
   playerTwoWins.innerText = `${currentGame.player2.winCount} wins`;
 };
 
+function getStoredWins() {
+  if (localStorage.length > 0) {
+    currentGame.grabWinsFromStorage();
+    currentGame.showPlayerWinCount();
+  };
+};
 //

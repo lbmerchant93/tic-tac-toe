@@ -46,6 +46,17 @@ class Game {
   showPlayerWinCount() {
     displayWinCounts();
   };
+  grabWinsFromStorage() {
+    for (var i = 0; i < localStorage.length; i++) {
+      var storageKey = localStorage.key(i);
+      var storageWins = JSON.parse(localStorage.getItem(storageKey));
+      if (storageWins.id === "One") {
+        this.player1.winCount = storageWins.winCount;
+      } else if (storageWins.id === "Two") {
+        this.player2.winCount = storageWins.winCount;
+      };
+    };
+  };
   saveWinningBoard() {
 
   };
