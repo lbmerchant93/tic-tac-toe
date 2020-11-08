@@ -9,6 +9,8 @@ var boxSix = document.querySelector('.six');
 var boxSeven = document.querySelector('.seven');
 var boxEight = document.querySelector('.eight');
 var boxNine = document.querySelector('.nine');
+var playerOneWins = document.querySelector('.player-one-wins');
+var playerTwoWins = document.querySelector('.player-two-wins');
 
 // global variables
 var currentGame = new Game();
@@ -97,9 +99,11 @@ function createNewGame() {
     boxes[i].innerText = ``;
   };
   messageDisplay.innerText = `It's ${currentGame.currentPlayer.token}'s turn`;
+  currentGame.showPlayerWinCount();
 };
 
-function displayWinCount() {
-
+function displayWinCounts() {
+  playerOneWins.innerText = `${currentGame.player1.winCount} wins`;
+  playerTwoWins.innerText = `${currentGame.player2.winCount} wins`;
 }
 //

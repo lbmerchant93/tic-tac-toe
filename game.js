@@ -2,6 +2,7 @@ class Game {
   constructor() {
     this.player1 = new Player('One', 'X');
     this.player2 = new Player('Two', 'O');
+    this.players = [this.player1, this.player2];
     this.currentPlayer;
     this.waitingPlayer;
     this.gamesPlayed = 0;
@@ -34,13 +35,16 @@ class Game {
   checkForDraw() {
     checkDrawConditions();
   };
-  saveWinningBoard() {
-
-  };
   resetGame() {
     this.gamesPlayed += 1;
     this.boxesFilled = 0;
     var timer;
     timer = setTimeout(createNewGame, 1000);
+  };
+  showPlayerWinCount() {
+    displayWinCounts();
+  }
+  saveWinningBoard() {
+
   };
 };
