@@ -1,7 +1,7 @@
 class Game {
   constructor() {
-    this.player1 = new Player('One', 'X');
-    this.player2 = new Player('Two', 'O');
+    this.player1 = new Player('One', '🔥');
+    this.player2 = new Player('Two', '❄️');
     this.players = [this.player1, this.player2];
     this.openBoxes = [boxOne, boxTwo, boxThree, boxFour, boxFive, boxSix, boxSeven, boxEight, boxNine];
     this.currentPlayer;
@@ -23,7 +23,7 @@ class Game {
     }
   }
   decidePlayerTurn() {
-    if (this.currentPlayer.token === 'X') {
+    if (this.currentPlayer.token === '🔥') {
       this.currentPlayer = this.player2;
       this.waitingPlayer = this.player1;
     } else {

@@ -32,6 +32,7 @@ function displayPlayerInput(event) {
   for (var i = 0; i < currentGame.openBoxes.length; i++) {
     if (event.target.id === currentGame.openBoxes[i].id) {
       currentGame.openBoxes[i].innerText = `${currentGame.currentPlayer.token}`;
+      currentGame.openBoxes[i].title = `${currentGame.currentPlayer.token}`;
       currentGame.openBoxes[i].classList.add('disable');
     };
   };
