@@ -3,6 +3,7 @@ class Game {
     this.player1 = new Player('One', 'X');
     this.player2 = new Player('Two', 'O');
     this.players = [this.player1, this.player2];
+    this.openBoxes = [boxOne, boxTwo, boxThree, boxFour, boxFive, boxSix, boxSeven, boxEight, boxNine];
     this.currentPlayer;
     this.waitingPlayer;
     this.gamesPlayed = 0;
@@ -15,6 +16,11 @@ class Game {
   };
   claimBox() {
     this.boxesFilled += 1;
+    for (var i = 0; i < currentGame.openBoxes.length; i++) {
+      if (event.target.id === currentGame.openBoxes[i].id) {
+        this.openBoxes.splice(i, 1);
+      }
+    }
   }
   decidePlayerTurn() {
     if (this.currentPlayer.token === 'X') {
@@ -40,6 +46,7 @@ class Game {
   resetGame() {
     this.gamesPlayed += 1;
     this.boxesFilled = 0;
+    this.openBoxes = [boxOne, boxTwo, boxThree, boxFour, boxFive, boxSix, boxSeven, boxEight, boxNine];
     var timer;
     timer = setTimeout(createNewGame, 1000);
   };

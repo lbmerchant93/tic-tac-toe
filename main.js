@@ -14,10 +14,9 @@ var playerTwoWins = document.querySelector('.player-two-wins');
 
 // global variables
 var currentGame = new Game();
-var boxes = [boxOne, boxTwo, boxThree, boxFour, boxFive, boxSix, boxSeven, boxEight, boxNine];
 
 //eventListeners
-window.addEventListener('load', getStoredWins);
+window.addEventListener('load', gatherStoredWins);
 boxOne.addEventListener('click', runGame);
 boxTwo.addEventListener('click', runGame);
 boxThree.addEventListener('click', runGame);
@@ -30,11 +29,10 @@ boxNine.addEventListener('click', runGame);
 
 // functions and event handlers
 function displayPlayerInput(event) {
-  for (var i = 0; i < boxes.length; i++) {
-    if (event.target.id === boxes[i].id) {
-      boxes[i].innerText = `${currentGame.currentPlayer.token}`;
-      boxes[i].classList.add('disable');
-      boxes.splice(i, 1);
+  for (var i = 0; i < currentGame.openBoxes.length; i++) {
+    if (event.target.id === currentGame.openBoxes[i].id) {
+      currentGame.openBoxes[i].innerText = `${currentGame.currentPlayer.token}`;
+      currentGame.openBoxes[i].classList.add('disable');
     };
   };
 };
@@ -94,8 +92,8 @@ function declareWinner() {
 
 function disableBoxesAfterWin() {
   if (messageDisplay.innerText.includes('won!')) {
-    for (var i = 0; i < boxes.length; i++) {
-      boxes[i].classList.add('disable');
+    for (var i = 0; i < currentGame.openBoxes.length; i++) {
+      currentGame.openBoxes[i].classList.add('disable');
     };
   };
 };
@@ -107,10 +105,9 @@ function checkDrawConditions() {
 };
 
 function createNewGame() {
-  boxes = [boxOne, boxTwo, boxThree, boxFour, boxFive, boxSix, boxSeven, boxEight, boxNine];
-  for (var i = 0; i < boxes.length; i++) {
-    boxes[i].classList.remove('disable');
-    boxes[i].innerText = ``;
+  for (var i = 0; i < currentGame.openBoxes.length; i++) {
+    currentGame.openBoxes[i].classList.remove('disable');
+    currentGame.openBoxes[i].innerText = ``;
   };
   messageDisplay.innerText = `It's ${currentGame.currentPlayer.token}'s turn`;
   currentGame.showPlayerWinCount();
@@ -121,7 +118,7 @@ function displayWinCounts() {
   playerTwoWins.innerText = `${currentGame.player2.winCount} wins`;
 };
 
-function getStoredWins() {
+function gatherStoredWins() {
   if (localStorage.length > 0) {
     currentGame.grabWinsFromStorage();
     currentGame.showPlayerWinCount();
