@@ -17,15 +17,15 @@ var currentGame = new Game();
 var boxes = [boxOne, boxTwo, boxThree, boxFour, boxFive, boxSix, boxSeven, boxEight, boxNine];
 
 //eventListeners
-boxOne.addEventListener('click', displayPlayerInput);
-boxTwo.addEventListener('click', displayPlayerInput);
-boxThree.addEventListener('click', displayPlayerInput);
-boxFour.addEventListener('click', displayPlayerInput);
-boxFive.addEventListener('click', displayPlayerInput);
-boxSix.addEventListener('click', displayPlayerInput);
-boxSeven.addEventListener('click', displayPlayerInput);
-boxEight.addEventListener('click', displayPlayerInput);
-boxNine.addEventListener('click', displayPlayerInput);
+boxOne.addEventListener('click', runGame);
+boxTwo.addEventListener('click', runGame);
+boxThree.addEventListener('click', runGame);
+boxFour.addEventListener('click', runGame);
+boxFive.addEventListener('click', runGame);
+boxSix.addEventListener('click', runGame);
+boxSeven.addEventListener('click', runGame);
+boxEight.addEventListener('click', runGame);
+boxNine.addEventListener('click', runGame);
 
 // functions and event handlers
 function displayPlayerInput(event) {
@@ -36,20 +36,31 @@ function displayPlayerInput(event) {
       boxes.splice(i, 1);
     };
   };
-  currentGame.claimBox();
-  currentGame.decidePlayerTurn();
+};
+
+function updateMessageDisplayWhichTurn() {
   messageDisplay.innerText = `It's ${currentGame.currentPlayer.token}'s turn`;
+};
+
+function checkForPossibleWinningAbility() {
   if (currentGame.boxesFilled >= 5 && currentGame.boxesFilled <= 9) {
     currentGame.checkForWinner();
-    if (messageDisplay.innerText.includes('won!')) {
-      currentGame.chooseWinner();
-      currentGame.resetGame();
-    };
-  }
+  };
+};
+
+function checkForDrawAbility() {
   if (currentGame.boxesFilled === 9) {
     currentGame.checkForDraw();
     currentGame.resetGame();
   };
+};
+
+function runGame() {
+  displayPlayerInput(event);
+  currentGame.claimBox();
+  currentGame.decidePlayerTurn();
+  checkForPossibleWinningAbility();
+  checkForDrawAbility();
 };
 
 function checkWinningConditions() {
@@ -74,7 +85,8 @@ function checkWinningConditions() {
 
 function declareWinner() {
   if (messageDisplay.innerText.includes('won!')) {
-    game.chooseWinner();
+    currentGame.changeWinCount();
+    currentGame.resetGame();
   };
 };
 
@@ -105,5 +117,5 @@ function createNewGame() {
 function displayWinCounts() {
   playerOneWins.innerText = `${currentGame.player1.winCount} wins`;
   playerTwoWins.innerText = `${currentGame.player2.winCount} wins`;
-}
+};
 //

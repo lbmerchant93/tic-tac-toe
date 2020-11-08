@@ -24,12 +24,14 @@ class Game {
       this.currentPlayer = this.player1;
       this.waitingPlayer = this.player2;
     };
+    updateMessageDisplayWhichTurn();
   };
-  chooseWinner() {
+  changeWinCount() {
     this.waitingPlayer.winCount += 1;
   }
   checkForWinner() {
     checkWinningConditions();
+    declareWinner();
     disableBoxesAfterWin();
   };
   checkForDraw() {
@@ -43,7 +45,7 @@ class Game {
   };
   showPlayerWinCount() {
     displayWinCounts();
-  }
+  };
   saveWinningBoard() {
 
   };
