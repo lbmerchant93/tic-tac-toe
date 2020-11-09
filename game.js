@@ -11,17 +11,17 @@ class Game {
       this.currentPlayer = this.player1;
     } else if (this.gamesPlayed % 2 != 0) {
       this.currentPlayer = this.player2;
-    }
+    };
     this.boxesFilled = 0;
   };
   claimBox() {
     this.boxesFilled += 1;
-    for (var i = 0; i < currentGame.openBoxes.length; i++) {
-      if (event.target.id === currentGame.openBoxes[i].id) {
+    for (var i = 0; i < this.openBoxes.length; i++) {
+      if (event.target.id === this.openBoxes[i].id) {
         this.openBoxes.splice(i, 1);
-      }
-    }
-  }
+      };
+    };
+  };
   decidePlayerTurn() {
     if (this.currentPlayer.token === '🔥') {
       this.currentPlayer = this.player2;
@@ -30,41 +30,15 @@ class Game {
       this.currentPlayer = this.player1;
       this.waitingPlayer = this.player2;
     };
-    updateMessageDisplayWhichTurn();
-  };
-  changeWinCount() {
-    this.waitingPlayer.winCount += 1;
-  }
-  checkForWinner() {
-    checkWinningConditions();
-    declareWinner();
-    disableBoxesAfterWin();
-  };
-  checkForDraw() {
-    checkDrawConditions();
   };
   resetGame() {
     this.gamesPlayed += 1;
     this.boxesFilled = 0;
     this.openBoxes = [boxOne, boxTwo, boxThree, boxFour, boxFive, boxSix, boxSeven, boxEight, boxNine];
-    var timer;
-    timer = setTimeout(createNewGame, 1000);
+    setTimeout(createNewGame, 1000);
   };
-  showPlayerWinCount() {
-    displayWinCounts();
-  };
-  grabWinsFromStorage() {
-    for (var i = 0; i < localStorage.length; i++) {
-      var storageKey = localStorage.key(i);
-      var storageWins = JSON.parse(localStorage.getItem(storageKey));
-      if (storageWins.id === "One") {
-        this.player1.winCount = storageWins.winCount;
-      } else if (storageWins.id === "Two") {
-        this.player2.winCount = storageWins.winCount;
-      };
-    };
-  };
-  saveWinningBoard() {
-
+  assignPlayerWinsFromStorage() {
+        this.player1.retrieveWinsFromStorage();
+        this.player2.retrieveWinsFromStorage();
   };
 };

@@ -37,7 +37,6 @@ body {
 
 /* game display */
 .game-display-area {
-
   display: grid;
   grid-template-rows: 0.1fr 1fr;
   text-align: center;
@@ -48,7 +47,7 @@ body {
 .game-board {
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-  padding: 2em 2em 2em 2em;
+  padding: 2em;
   max-height: 10em;
   max-width: 10em;
   margin: auto;

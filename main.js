@@ -32,7 +32,6 @@ function displayPlayerInput(event) {
   for (var i = 0; i < currentGame.openBoxes.length; i++) {
     if (event.target.id === currentGame.openBoxes[i].id) {
       currentGame.openBoxes[i].innerText = `${currentGame.currentPlayer.token}`;
-      currentGame.openBoxes[i].title = `${currentGame.currentPlayer.token}`;
       currentGame.openBoxes[i].classList.add('disable');
     };
   };
@@ -44,13 +43,15 @@ function updateMessageDisplayWhichTurn() {
 
 function checkForPossibleWinningAbility() {
   if (currentGame.boxesFilled >= 5 && currentGame.boxesFilled <= 9) {
-    currentGame.checkForWinner();
+    checkWinningConditions();
+    declareWinner();
+    disableBoxesAfterWin();
   };
 };
 
 function checkForDrawAbility() {
   if (currentGame.boxesFilled === 9) {
-    currentGame.checkForDraw();
+    checkDrawConditions();
     currentGame.resetGame();
   };
 };
@@ -59,6 +60,7 @@ function runGame() {
   displayPlayerInput(event);
   currentGame.claimBox();
   currentGame.decidePlayerTurn();
+  updateMessageDisplayWhichTurn();
   checkForPossibleWinningAbility();
   checkForDrawAbility();
 };
@@ -85,9 +87,10 @@ function checkWinningConditions() {
 
 function declareWinner() {
   if (messageDisplay.innerText.includes('won!')) {
-    currentGame.changeWinCount();
+    currentGame.waitingPlayer.changeWinCount();
     currentGame.waitingPlayer.saveWinsToStorage();
     currentGame.resetGame();
+      displayWinCounts();
   };
 };
 
@@ -101,7 +104,7 @@ function disableBoxesAfterWin() {
 
 function checkDrawConditions() {
   if (!messageDisplay.innerText.includes('won!')) {
-    messageDisplay.innerText = `Its a draw!`
+    messageDisplay.innerText = `Its a draw!`;
   };
 };
 
@@ -111,7 +114,6 @@ function createNewGame() {
     currentGame.openBoxes[i].innerText = ``;
   };
   messageDisplay.innerText = `It's ${currentGame.currentPlayer.token}'s turn`;
-  currentGame.showPlayerWinCount();
 };
 
 function displayWinCounts() {
@@ -121,8 +123,7 @@ function displayWinCounts() {
 
 function gatherStoredWins() {
   if (localStorage.length > 0) {
-    currentGame.grabWinsFromStorage();
-    currentGame.showPlayerWinCount();
+    currentGame.assignPlayerWinsFromStorage();
+    displayWinCounts();
   };
 };
-//
