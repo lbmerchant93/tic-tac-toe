@@ -1,5 +1,5 @@
 //querySelectors
-var messageDisplay = document.querySelector('.display-turn');
+var messageDisplay = document.querySelector('.display-message');
 var boxOne = document.querySelector('.one');
 var boxTwo = document.querySelector('.two');
 var boxThree = document.querySelector('.three');
