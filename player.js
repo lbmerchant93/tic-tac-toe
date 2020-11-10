@@ -3,7 +3,6 @@ class Player {
     this.id = id;
     this.token = token;
     this.winCount = 0;
-    this.boxes = [];
   };
   changeWinCount() {
     this.winCount += 1;

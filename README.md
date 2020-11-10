@@ -55,11 +55,13 @@ There are no extra steps to take in order to start the game, because the game is
 
 Once players have made five moves collectively, the JavaScript will start to compare the inputs to possible winning conditions. If the player makes a winning move, the clickability for the whole game board is disabled. A winning display message is shown saying which player has won the game. A timeout function is run which will reset the game board to empty and add clickability back to each box. This timeout function will show the board for one second before resetting the game. The loser of the previous game will be the person that gets to start the next game. Once the players have selected all the boxes, the conditions for a possible winner will be checked first. If there is no winner, the display message will state that it is a draw and the timeout function will be run to start a new game. The opposite player will start the next game in the case of a draw. A game reset is not a page refresh or load.
 
-
+![Game Reset](https://media.giphy.com/media/NDiwh1P6ERMGaB9Jre/giphy.gif)
 
 ### Number of Wins
 
 In the event that a player meets the winning conditions, the game will add one win to their win count. The screen will update displaying that this player has a win count increase of one. The game will also save this update to the computer's local storage. Now that a player has a win in local storage, if the page were to be refreshed, the number of wins each player has will persist on the page. (If page is reloaded the game will default back to player one starting again.)
+
+![Number of Wins](https://media.giphy.com/media/lXKJTmx4CK5kQ1e26K/giphy.gif)
 
 ## Challenges
 
