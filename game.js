@@ -38,7 +38,7 @@ class Game {
     setTimeout(createNewGame, 1000);
   };
   assignPlayerWinsFromStorage() {
-        this.player1.retrieveWinsFromStorage();
-        this.player2.retrieveWinsFromStorage();
+    this.player1.retrieveWinsFromStorage();
+    this.player2.retrieveWinsFromStorage();
   };
 };

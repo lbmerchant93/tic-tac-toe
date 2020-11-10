@@ -90,7 +90,7 @@ function declareWinner() {
     currentGame.waitingPlayer.changeWinCount();
     currentGame.waitingPlayer.saveWinsToStorage();
     currentGame.resetGame();
-      displayWinCounts();
+    displayWinCounts();
   };
 };
 
