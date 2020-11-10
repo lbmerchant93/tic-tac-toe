@@ -43,13 +43,13 @@ None. This project was developed on macOS Catalina 10.15.6 and tested in Chrome 
 
 When initially loaded, the page will display the Tic-Tac-Toe game board grid and that each player has zero wins. The left is player one (🔥) and the right is player two (❄️). The display message in the middle will show which player's turn it is and, when the time comes, display if the game has a winner or if it is a draw. On page load, the game will instantiate a new game which will default to player one being the first to go.
 
-![Tic-Tac-Toe Initial Layout](Initial-Screen.png)
+![Tic-Tac-Toe Initial Layout](./assets/Initial-Screen.png)
 
 ### Game Play
 
 There are no extra steps to take in order to start the game, because the game is instantiated every time the page is loaded. The object of the game is to create a straight line with your token before your opponent. This line can be horizontal, vertical or diagonal. Once a player selects a box, this box is disabled and can not be changed. Players can see which boxes are free if the box is currently empty or noticing the cursor changes to a pointer when it is free to be chosen. Once a player is has met the winning conditions or the game board is filled completely the game will reset, see the section [Game Reset](#game-reset).
 
-![Game Play](Game-Play.mov)
+![Game Play](https://media.giphy.com/media/tuaT3KhUKoilz8BwEx/giphy.gif)
 
 ### Game Reset
 
