@@ -1,5 +1,5 @@
 //querySelectors
-var messageDisplay = document.querySelector('.display-turn');
+var messageDisplay = document.querySelector('.display-message');
 var boxOne = document.querySelector('.one');
 var boxTwo = document.querySelector('.two');
 var boxThree = document.querySelector('.three');
@@ -14,9 +14,9 @@ var playerTwoWins = document.querySelector('.player-two-wins');
 
 // global variables
 var currentGame = new Game();
-var boxes = [boxOne, boxTwo, boxThree, boxFour, boxFive, boxSix, boxSeven, boxEight, boxNine];
 
 //eventListeners
+window.addEventListener('load', gatherStoredWins);
 boxOne.addEventListener('click', runGame);
 boxTwo.addEventListener('click', runGame);
 boxThree.addEventListener('click', runGame);
@@ -29,11 +29,10 @@ boxNine.addEventListener('click', runGame);
 
 // functions and event handlers
 function displayPlayerInput(event) {
-  for (var i = 0; i < boxes.length; i++) {
-    if (event.target.id === boxes[i].id) {
-      boxes[i].innerText = `${currentGame.currentPlayer.token}`;
-      boxes[i].classList.add('disable');
-      boxes.splice(i, 1);
+  for (var i = 0; i < currentGame.openBoxes.length; i++) {
+    if (event.target.id === currentGame.openBoxes[i].id) {
+      currentGame.openBoxes[i].innerText = `${currentGame.currentPlayer.token}`;
+      currentGame.openBoxes[i].classList.add('disable');
     };
   };
 };
@@ -44,13 +43,15 @@ function updateMessageDisplayWhichTurn() {
 
 function checkForPossibleWinningAbility() {
   if (currentGame.boxesFilled >= 5 && currentGame.boxesFilled <= 9) {
-    currentGame.checkForWinner();
+    checkWinningConditions();
+    declareWinner();
+    disableBoxesAfterWin();
   };
 };
 
 function checkForDrawAbility() {
   if (currentGame.boxesFilled === 9) {
-    currentGame.checkForDraw();
+    checkDrawConditions();
     currentGame.resetGame();
   };
 };
@@ -59,6 +60,7 @@ function runGame() {
   displayPlayerInput(event);
   currentGame.claimBox();
   currentGame.decidePlayerTurn();
+  updateMessageDisplayWhichTurn();
   checkForPossibleWinningAbility();
   checkForDrawAbility();
 };
@@ -85,37 +87,43 @@ function checkWinningConditions() {
 
 function declareWinner() {
   if (messageDisplay.innerText.includes('won!')) {
-    currentGame.changeWinCount();
+    currentGame.waitingPlayer.changeWinCount();
+    currentGame.waitingPlayer.saveWinsToStorage();
     currentGame.resetGame();
+    displayWinCounts();
   };
 };
 
 function disableBoxesAfterWin() {
   if (messageDisplay.innerText.includes('won!')) {
-    for (var i = 0; i < boxes.length; i++) {
-      boxes[i].classList.add('disable');
+    for (var i = 0; i < currentGame.openBoxes.length; i++) {
+      currentGame.openBoxes[i].classList.add('disable');
     };
   };
 };
 
 function checkDrawConditions() {
   if (!messageDisplay.innerText.includes('won!')) {
-    messageDisplay.innerText = `Its a draw!`
+    messageDisplay.innerText = `Its a draw!`;
   };
 };
 
 function createNewGame() {
-  boxes = [boxOne, boxTwo, boxThree, boxFour, boxFive, boxSix, boxSeven, boxEight, boxNine];
-  for (var i = 0; i < boxes.length; i++) {
-    boxes[i].classList.remove('disable');
-    boxes[i].innerText = ``;
+  for (var i = 0; i < currentGame.openBoxes.length; i++) {
+    currentGame.openBoxes[i].classList.remove('disable');
+    currentGame.openBoxes[i].innerText = ``;
   };
   messageDisplay.innerText = `It's ${currentGame.currentPlayer.token}'s turn`;
-  currentGame.showPlayerWinCount();
 };
 
 function displayWinCounts() {
   playerOneWins.innerText = `${currentGame.player1.winCount} wins`;
   playerTwoWins.innerText = `${currentGame.player2.winCount} wins`;
 };
-//
+
+function gatherStoredWins() {
+  if (localStorage.length > 0) {
+    currentGame.assignPlayerWinsFromStorage();
+    displayWinCounts();
+  };
+};
