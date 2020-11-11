@@ -8,16 +8,17 @@
   <meta name="description" content="Allow two players to play the classic game of Tic Tac Toe.">
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+
 <body class="main-layout-container">
   <div class="player-one-left-side">
-    <section>X</section>
+    <section class="player-token">🔥</section>
     <section class="player-one-wins">0 wins
     </section>
     <article class="player-one-trophies">
     </article>
   </div>
   <main class="game-display-area">
-    <article class="display-turn">It's X's turn</article>
+    <article class="display-message">It's 🔥's turn</article>
     <div class="game-board">
       <article id="box-one" class="one"></article>
       <article id="box-two" class="two"></article>
@@ -31,15 +32,23 @@
     </div>
   </main>
   <div class="player-two-right-side">
-    <section>O</section>
+    <section class="player-token">❄️</section>
     <section class="player-two-wins"> 0 wins
     </section>
     <article class="player-two-trophies">
     </article>
   </div>
-
-
-
+  <footer class="footer">
+    "Some say the world will end in fire,
+    some say in ice.
+    From what I’ve tasted of desire,
+    I hold with those who favor fire.
+    But if it had to perish twice,
+    I think I know enough of hate.
+    To say that for destruction ice,
+    is also great
+    and would suffice."</br> - Robert Frost
+  </footer>
   <script src="player.js"></script>
   <script src="game.js"></script>
   <script src="main.js"></script>
