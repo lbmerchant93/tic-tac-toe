@@ -63,6 +63,13 @@ In the event that a player meets the winning conditions, the game will add one w
 
 ![Number of Wins](https://media.giphy.com/media/lXKJTmx4CK5kQ1e26K/giphy.gif)
 
+## Code Architecture
+The player.js file has the responsibilities of keeping track of the id, token and number that each player has. There are three methods which modify a player in the following ways: update the win count for a player once a game in won, save the win count to local storage, and retrieve wins from local storage.
+
+The game.js file instantiates the two players and assigns which player is the current player and which is waiting for their turn. It keeps track of how many moves have been made between the players. Once a game is over, the resetGame method will create a new game. This method includes a timeout function that will allow the players to view the game board for a second before clearing. Lastly there is a method which assigns the correct wins from storage to the correct player.
+
+The main.js file is where the querySelectors and their eventListeners are declared. There is one global variable which instantiates a new game when the page is loaded. If the page is reloaded the gatherStoredWins function is run which will call the method in the game class to retrieve each players wins and then display those wins. When a player makes a move, the first function run is to display the player's input and disable that box. Each time a box is chosen the main.js will update the display message with the appropriate message (who's turn, who won, or if there is a draw). Once five moves have been played collectively a function is run to check for possible win conditions. If a player meets the win conditions the display message will tell who the winner is. The methods to update the player win count, save the win count to storage and reset the game are then called. If no win conditions are met and all the boxes are taken the function will check for a draw. Then the draw message is shown and the resetGame timeout is ran to start a new game. In a way the main.js delegates which methods and functions are to be called in when in order to keep the Data Model and DOM separate.
+
 ## Challenges
 
 + Being sure to keep the data models and DOM separate.
